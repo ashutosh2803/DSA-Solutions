@@ -5,29 +5,27 @@ function runProgram(input) {
     for (let i = 0; i < tests; i++){
         let size = +input[line++];
         let arr = input[line++].trim().split(" ").map(Number).sort((a, b) => a - b);
-        let zeroArr = [];
-        let result = [];
+        let minEven = arr[size - 1];
+        let maxOdd = arr[0];
         for (let j = 0; j < size; j++){
-            if (arr[j] == 0) {
-                zeroArr.push(arr[j]);
+            if (arr[j] % 2 == 0) {
+                if (minEven > arr[j]) {
+                    minEven = arr[j];
+                }
             } else {
-                result.push(arr[j]);
+                if (maxOdd < arr[j]) {
+                    maxOdd = arr[j];
+                }
             }
         }
-        let finalResult = [];
-        let temp = result.shift();
-        finalResult = [temp, ...zeroArr, ...result];
-        console.log(finalResult.join(""));
+        // console.log(maxOdd);
+        console.log(maxOdd - minEven);
     }
 }
 if (process.env.USER === "ubuntu") {
-	runProgram(`3
-    4
-    2 1 0 0
-    4
-    1 4 2 3
-    4
-    5 2 3 2`);
+	runProgram(`1
+    5
+    3 1 2 4 5`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding("ascii");

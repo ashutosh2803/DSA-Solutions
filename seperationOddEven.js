@@ -5,29 +5,40 @@ function runProgram(input) {
     for (let i = 0; i < tests; i++){
         let size = +input[line++];
         let arr = input[line++].trim().split(" ").map(Number).sort((a, b) => a - b);
-        let zeroArr = [];
-        let result = [];
+        let type = +input[line++];
+        let evenType = [];
+        let oddType = [];
         for (let j = 0; j < size; j++){
-            if (arr[j] == 0) {
-                zeroArr.push(arr[j]);
+            if (arr[j] % 2 == 0) {
+                evenType.push(arr[j]);
             } else {
-                result.push(arr[j]);
+                oddType.push(arr[j]);
             }
         }
-        let finalResult = [];
-        let temp = result.shift();
-        finalResult = [temp, ...zeroArr, ...result];
-        console.log(finalResult.join(""));
+        let result = [];
+        switch (type) {
+            case 1: 
+                result = [...evenType, ...oddType];
+                console.log(result.join(" "));
+                break;
+            case 2:
+                result = [...oddType, ...evenType];
+                console.log(result.join(" "));
+                break;
+            default: null;
+        }
     }
 }
+// type 1 - even first
+// type 2 - odd first
 if (process.env.USER === "ubuntu") {
-	runProgram(`3
-    4
-    2 1 0 0
-    4
-    1 4 2 3
-    4
-    5 2 3 2`);
+	runProgram(`2
+    6
+    1 3 5 2 7 4
+    1
+    6 
+    1 3 5 2 7 4
+    2`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding("ascii");

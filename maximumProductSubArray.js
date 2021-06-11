@@ -4,30 +4,24 @@ function runProgram(input) {
     let line = 0;
     for (let i = 0; i < tests; i++){
         let size = +input[line++];
-        let arr = input[line++].trim().split(" ").map(Number).sort((a, b) => a - b);
-        let zeroArr = [];
-        let result = [];
+        let arr = input.trim().split(" ").map(Number).sort((a, b) => a - b);
+        let product = [];
         for (let j = 0; j < size; j++){
-            if (arr[j] == 0) {
-                zeroArr.push(arr[j]);
-            } else {
-                result.push(arr[j]);
+            if (arr[j] > 0) {
+                let temp = arr[j];
+                for (let k = j + 1; k < size; k++){
+                    temp *= arr[k];
+                }
             }
         }
-        let finalResult = [];
-        let temp = result.shift();
-        finalResult = [temp, ...zeroArr, ...result];
-        console.log(finalResult.join(""));
     }
 }
 if (process.env.USER === "ubuntu") {
-	runProgram(`3
+	runProgram(`2
+    3
+    -3 0 -2
     4
-    2 1 0 0
-    4
-    1 4 2 3
-    4
-    5 2 3 2`);
+    4 5 -1 2`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding("ascii");
