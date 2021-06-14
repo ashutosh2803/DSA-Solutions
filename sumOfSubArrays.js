@@ -6,12 +6,6 @@ function runProgram(input) {
     let queriesCount = +input[line++];
     for (let i = 0; i < queriesCount.length; i++){
         let [low, high] = input[line++].trim().split(" ").map(Number);
-        if (low > size) {
-            low = low % size;
-        }
-        if (high > size) {
-            high = high % size;
-        }
         
     }
 }

@@ -5,19 +5,17 @@ function runProgram(input) {
     for (let i = 0; i < tests; i++){
         let size = +input[line++];
         let arr = input[line++].trim().split(" ").map(Number);
-        let flag = 0;
         for (let j = 0; j < size; j++){
-            let sum = j;
+            let sum = arr[j];
             for (let k = 0; k < size; k++){
                 if (j != k) {
-                    if (sum == arr[k]) {
-                        flag = 1;
-                    }
                     sum += arr[k];
+                    for (let m = 0; m < size; m++){
+                        
+                    }
                 }
             }
         }
-        console.log(flag);
     }
 }
 if (process.env.USER === "ubuntu") {
