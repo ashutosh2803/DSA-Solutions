@@ -18,20 +18,19 @@ function runProgram(input) {
     }
 }
 const checkDuplicate = (arr, size) => {
-    
     let obj = {};
-        for (let j = 0; j < size; j++){
-            if (obj[arr[j]] === undefined) {
-                obj[arr[j]] = 1;
-            } else {
-                obj[arr[j]]++;
-            }
+    for (let i = 0; i < size; i++){
+        if (obj[arr[i]] === undefined) {
+            obj[arr[i]] = 1;
+        } else {
+            obj[arr[i]]++;
         }
-        for (item in obj) {
-            if (obj[item] > 1) {
-                return true
-            }
+    }
+    for (item in obj) {
+        if (obj[item] != 1) {
+            return true;
         }
+    }
     return false;
 }
 if (process.env.USER === "ubuntu") {
