@@ -8,7 +8,6 @@ function runProgram(input) {
     console.log(binarySearch(arr, start, end, target, count));
 }
 const binarySearch = (arr, start, end, target, count) => {
-    console.log(count);
     let middle = Math.floor((start + end) / 2);
     if (arr[middle] == target)
         count++;
@@ -16,7 +15,6 @@ const binarySearch = (arr, start, end, target, count) => {
         return binarySearch(arr, start, middle - 1, target, count);
     if (arr[middle] < target)
         return binarySearch(arr, middle + 1, end, target, count);
-    return count;
 }
 if (process.env.USER === "ubuntu") {
 	runProgram(`6 3
