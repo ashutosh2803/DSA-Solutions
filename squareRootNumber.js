@@ -3,35 +3,46 @@ function runProgram(input) {
     let tests = +input.shift();
     for (let i = 0; i < tests; i++){
         let num = +input[i];
-        console.log(squareRoot(num));
+        // console.log("hello")
+        let result = squareRoot(num);
+        console.log(result)
+        console.log(roundNum(result));
     }
+}
+const roundNum = (num) => {
+    let numArr = num.toString().split(".");
+    return numArr[0];
 }
 const squareRoot = (num) => {
-    if (num < 2) {
-        return num;
-    }
-    let result;
-    let start = 1;
-    let end = num / 2;
-    while (start <= end) {
-        let middle = start + (start + end) / 2;
-        let sqr = middle * middle;
-        if (sqr == num)
-            return middle;
-        else if (sqr < num) {
-            start = middle + 1;
-            result = middle;
+    let low = 0;
+    let high = num;
+    let ans;
+    while (low <= high) {
+        let mid = (low + high) / 2;
+        if (mid * mid == num) {
+            ans = mid;
+            break;
+        } else if (mid * mid < num) {
+            low = mid + 1;
+            ans = mid;
         } else {
-            end = middle - 1;
+            high = mid - 1;
         }
     }
-  	resultArr = String(result).split(".");
-    return Number(resultArr[0]);
+    return ans;
 }
-if (process.env.USER === "ubuntu") {
-	runProgram(`2
+if (process.env.USERNAME === "ASHUTOSH") {
+	runProgram(`10
+    7
     4
-    8`);
+    16
+    5
+    21
+    3
+    12
+    4
+    4
+    10`);
 } else {
 	process.stdin.resume();
 	process.stdin.setEncoding("ascii");
